@@ -13,7 +13,21 @@ const PRIVATE_APP_ACCESS = '';
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
 app.get('/', async (req, res) => {
-   
+    const cactiEndpoint = 'https://api.hubspot.com/crm/v3/objects/cacti?properties=cactus_name,height_of_cactus,species,name';
+    const headers = {
+      Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+      'Content-Type': 'application/json'
+    }
+
+    try {
+      const response = await axios.get(cactiEndpoint, { headers });
+      console.log('results of the call ', JSON.stringify(response.data, null, 2));
+      const cacti = response.data.results;
+      console.log('cactidetails:', JSON.stringify(cacti, null, 2));
+      res.render('homepage', { cacti: cacti });
+    } catch (error) {
+      console.error(error);
+    }
   })
 
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
