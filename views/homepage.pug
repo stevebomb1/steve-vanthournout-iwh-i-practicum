@@ -37,13 +37,16 @@ html
           tr
             th Species
             th Height of Cactus
+            th Name
             th Cactus Name
         tbody
           each cactus in cacti
             tr
-              td= cactus.species
-              td= cactus.height
-              td= cactus.name
+              td= cactus.properties.species
+              td= cactus.properties.height_of_cactus
+              td= cactus.properties.name
+              td= cactus.properties.cactus_name
+
     else
       p No cactus records found.
 
