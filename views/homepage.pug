@@ -1,0 +1,50 @@
+doctype html
+html
+  head
+    title Cactus Records
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    style.
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      a {
+        display: inline-block;
+        margin-top: 15px;
+        color: #007BFF;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+  body
+    h1 Cactus Records
+
+    if cacti.length
+      table
+        thead
+          tr
+            th Species
+            th Height of Cactus
+            th Cactus Name
+        tbody
+          each cactus in cacti
+            tr
+              td= cactus.species
+              td= cactus.height
+              td= cactus.name
+    else
+      p No cactus records found.
+
+    a(href='/update-cactus') Add to this table
